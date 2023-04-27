@@ -1,0 +1,18 @@
+@import "@/media.scss";
+
+.container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  margin-top: 2rem;
+  background: linear-gradient(180deg, #a8b0d7 0%, #ffffff 100%);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
