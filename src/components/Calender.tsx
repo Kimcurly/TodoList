@@ -1,14 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import getDateFormat from "../utils/getDateFormat";
 import dayjs from "dayjs";
 import styled from "styled-components";
+import DayOfTheWeek from "./Calender/DayOfTheWeek";
+import CalenderHeader from "./Calender/CalenderHeader";
+import CalenderRenderCell from "./Calender/CalenderRenderCell";
+
+export interface Date {
+  currentYear: string;
+  currentMonth: string;
+  currentDate: string;
+  currentDay: string;
+  currentFirstDate: number;
+  currentFirstDay: number;
+  currentFirstWeekDay: string;
+  currentLastDate: number;
+  currentLastDay: number;
+  lastMonthDate: string;
+}
+
+export type DateTypes = {
+  currentYear: string;
+  currentMonth: string;
+  currentDate: string;
+  currentDay: string;
+  currentFirstDate: number;
+  currentFirstDay: number;
+  currentFirstWeekDay: string;
+  currentLastDate: number;
+  currentLastDay: number;
+  lastMonthDate: string;
+};
 
 const Calender = () => {
-  const [currentMoment, setCurrentMoment] = useState(
-    getDateFormat(dayjs("2023-04-03"))
-  );
+  const [currentMoment, setCurrentMoment] = useState(getDateFormat(dayjs()));
 
-  const [selectedMoment, setSelectedMoment] = useState();
+  const [selectedMoment, setSelectedMoment] = useState(0);
+
+  useEffect(() => {
+    const prevMonth = dayjs().subtract(-selectedMoment, "month");
+    const nextMonth = dayjs().add(selectedMoment, "month");
+    if (selectedMoment < 0) {
+      setCurrentMoment(getDateFormat(dayjs(prevMonth.format())));
+    } else if (selectedMoment > 0) {
+      setCurrentMoment(getDateFormat(dayjs(nextMonth.format())));
+    } else {
+      setCurrentMoment(getDateFormat(dayjs()));
+    }
+    console.log("effect!");
+    console.log(selectedMoment);
+  }, [selectedMoment]);
+
   const {
     currentYear,
     currentMonth,
@@ -20,60 +62,26 @@ const Calender = () => {
     currentLastDate,
     currentLastDay,
     lastMonthDate,
-  }: any = currentMoment;
+  }: Date = currentMoment;
 
-  const mappedWeekData = [];
-  const weekData: any[] = [];
-  const weekStart = currentDate - currentDay;
-  const firstWeekStart =
-    currentFirstDate - (currentFirstDay ? currentFirstDay : 7);
+  const leftButtonClickHandler = () => {
+    setSelectedMoment((prev) => prev - 1);
+  };
 
-  // for (let i = 0; i < 7; i++) {
-  //   weekData[i] = weekStart + i;
-
-  //   if (weekData[i] > currentLastDate) weekData[i] -= currentLastDate;
-  // }
-
-  for (let i = 1; i < 8; i++) {
-    // 전 월의 마지막 날짜를 포함하지 않는, 아예 출력하지 않는 첫 주 렌더링 로직
-    weekData[i - 1] = firstWeekStart + i <= 0 ? undefined : firstWeekStart + i;
-  }
-  mappedWeekData.push(
-    <OneWeekContainer>
-      {weekData.map((day) => {
-        if (day && day <= currentLastDate) return <div key={day}>{day}</div>;
-      })}
-    </OneWeekContainer>
-  );
-
-  outer: while (1) {
-    for (let i = 1; i < 8; i++) {
-      weekData[i - 1] = weekData.at(-1) + i;
-    }
-
-    console.log(weekData);
-
-    mappedWeekData.push(
-      <OneWeekContainer>
-        {weekData.map((day) => {
-          if (day && day <= currentLastDate) return <div key={day}>{day}</div>;
-        })}
-      </OneWeekContainer>
-    );
-
-    console.log(mappedWeekData);
-
-    if (
-      weekData.at(-1) >
-        currentLastDate - (currentLastDay ? currentLastDay : 7) + 1 &&
-      Math.abs(weekData.at(-1) - currentLastDate) <= 6
-    )
-      break outer;
-  }
+  const rightButtonClickHandler = () => {
+    setSelectedMoment((prev) => prev + 1);
+  };
 
   return (
     <CalenderContainer>
-      <div>{mappedWeekData}</div>
+      <CalenderHeader
+        currentYearData={currentYear}
+        currentMonthData={currentMonth}
+        onLeftButtonClicked={leftButtonClickHandler}
+        onRightButtonClicked={rightButtonClickHandler}
+      />
+      <DayOfTheWeek />
+      <CalenderRenderCell currentMoment={currentMoment} />
     </CalenderContainer>
   );
 };
@@ -84,10 +92,4 @@ const CalenderContainer = styled.div`
   width: 100%;
   height: 100%;
   background-color: #fff;
-`;
-
-const OneWeekContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 1280px;
 `;

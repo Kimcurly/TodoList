@@ -16,16 +16,16 @@ const getDateFormat = (nowDate: any): object => {
     .get("D");
 
   return {
-    currentYear,
-    currentMonth,
-    currentDate,
-    currentDay,
-    currentFirstDate,
-    currentFirstDay,
-    currentFirstWeekDay,
-    currentLastDate,
-    currentLastDay,
-    lastMonthDate,
+    currentYear: currentYear,
+    currentMonth: currentMonth,
+    currentDate: currentDate,
+    currentDay: currentDay,
+    currentFirstDate: currentFirstDate,
+    currentFirstDay: currentFirstDay,
+    currentFirstWeekDay: currentFirstWeekDay,
+    currentLastDate: currentLastDate,
+    currentLastDay: currentLastDay,
+    lastMonthDate: lastMonthDate,
   };
 };
 
