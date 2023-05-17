@@ -1,6 +1,6 @@
 import dayjs, { Dayjs } from "dayjs";
 
-const getDateFormat = (nowDate: any): object => {
+const getDateFormat = (nowDate: Dayjs): object => {
   const currentYear = nowDate.get("year");
   const currentMonth = nowDate.get("month");
   const currentDate = nowDate.get("date");

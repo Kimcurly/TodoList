@@ -19,19 +19,6 @@ export interface Date {
   lastMonthDate: string;
 }
 
-export type DateTypes = {
-  currentYear: string;
-  currentMonth: string;
-  currentDate: string;
-  currentDay: string;
-  currentFirstDate: number;
-  currentFirstDay: number;
-  currentFirstWeekDay: string;
-  currentLastDate: number;
-  currentLastDay: number;
-  lastMonthDate: string;
-};
-
 const Calender = () => {
   const [currentMoment, setCurrentMoment] = useState(getDateFormat(dayjs()));
 
@@ -40,15 +27,12 @@ const Calender = () => {
   useEffect(() => {
     const prevMonth = dayjs().subtract(-selectedMoment, "month");
     const nextMonth = dayjs().add(selectedMoment, "month");
-    if (selectedMoment < 0) {
+
+    if (selectedMoment < 0)
       setCurrentMoment(getDateFormat(dayjs(prevMonth.format())));
-    } else if (selectedMoment > 0) {
+    else if (selectedMoment > 0)
       setCurrentMoment(getDateFormat(dayjs(nextMonth.format())));
-    } else {
-      setCurrentMoment(getDateFormat(dayjs()));
-    }
-    console.log("effect!");
-    console.log(selectedMoment);
+    else setCurrentMoment(getDateFormat(dayjs()));
   }, [selectedMoment]);
 
   const {
@@ -89,7 +73,6 @@ const Calender = () => {
 export default Calender;
 
 const CalenderContainer = styled.div`
-  width: 100%;
+  flex-basis: 900px;
   height: 100%;
-  background-color: #fff;
 `;

@@ -55,7 +55,6 @@ const ProgressContainer = styled.div`
 const FirstProgressCircle = styled.svg`
   position: absolute;
   left: 0;
-  fill: black;
 `;
 
 const SecondProgressCircle = styled.svg`

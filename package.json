@@ -12,16 +12,21 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@types/styled-components": "^5.1.26",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/react-redux": "^7.1.25",
     "dayjs": "^1.11.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {
+    "@types/dayjs-recur": "^1.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^3.1.0",
     "typescript": "^5.0.4",
     "vite": "^4.2.0"

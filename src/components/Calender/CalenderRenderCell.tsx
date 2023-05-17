@@ -1,7 +1,7 @@
 import React from "react";
 import Progress from "../UI/Progress";
 import styled from "styled-components";
-import { Date, DateTypes } from "../Calender";
+import { Date } from "../Calender";
 
 type DateProps = {
   currentMoment: Date;
