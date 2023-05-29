@@ -74,5 +74,6 @@ export default Calender;
 
 const CalenderContainer = styled.div`
   flex-basis: 900px;
+  max-width: 50%;
   height: 100%;
 `;

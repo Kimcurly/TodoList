@@ -94,7 +94,7 @@ export default CalenderRenderCell;
 const OneWeekContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 900px;
+  width: 100%;
   padding-top: 10px;
   margin-bottom: 15px;
 `;

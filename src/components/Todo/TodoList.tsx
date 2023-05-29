@@ -24,10 +24,9 @@ const TodoList = () => {
 
   return (
     <GoalContainer>
-      <div></div>
-      <div>
-        {todos.map((todo) => {
-          return (
+      {todos.map((todo) => {
+        return (
+          <>
             <TodoContainer>
               <svg
                 width="20"
@@ -41,15 +40,15 @@ const TodoList = () => {
                   fill="#444444"
                 />
               </svg>
-              <div>{todo.title}</div>
+              <TextContainer>{todo.title}</TextContainer>
+              <Button onSubmit={handleSubmit} />
             </TodoContainer>
-          );
-        })}
-      </div>
-      <form>
-        <input value={input} onChange={handleChange} />
-      </form>
-      <Button onSubmit={handleSubmit} />
+            <form>
+              <input value={input} onChange={handleChange} />
+            </form>
+          </>
+        );
+      })}
     </GoalContainer>
   );
 };
@@ -59,12 +58,21 @@ export default TodoList;
 const GoalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  flex-basis: 150px;
+  flex-basis: 40%;
 `;
 
 const TodoContainer = styled.div`
   display: flex;
+  width: 80%;
+  height: 5%;
+  justify-content: space-between;
+  align-items: center;
   padding: 15px 0 15px 0;
+  background-color: #f1f1f1;
+  border-radius: 6rem;
+`;
+
+const TextContainer = styled.div`
+  font-weight: 600;
 `;
