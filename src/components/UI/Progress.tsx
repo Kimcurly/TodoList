@@ -50,6 +50,7 @@ const ProgressContainer = styled.div`
   width: 26px;
   height: 26px;
   position: relative;
+  margin-bottom: 0.5rem;
 `;
 
 const FirstProgressCircle = styled.svg`

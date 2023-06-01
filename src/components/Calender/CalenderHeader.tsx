@@ -44,6 +44,10 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  @media (min-width: 390px) {
+    display: flex;
+    width: 100%;
+  }
 `;
 
 const CurrentMomentContainer = styled.div`

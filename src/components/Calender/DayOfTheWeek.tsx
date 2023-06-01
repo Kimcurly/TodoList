@@ -18,7 +18,7 @@ export default DayOfTheWeek;
 const DayOfTheWeekContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
+  padding-top: 1rem;
 `;
 
 const DayOfTheWeekCell = styled.span`

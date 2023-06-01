@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 type HandlerProps = {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Button = ({ onSubmit }: HandlerProps) => {
+const Button = ({ onClick }: HandlerProps) => {
   return (
     <ButtonContainer>
-      <AddButton onClick={onSubmit}>+</AddButton>
+      <AddButton onClick={onClick}>+</AddButton>
     </ButtonContainer>
   );
 };
@@ -16,17 +16,18 @@ const Button = ({ onSubmit }: HandlerProps) => {
 export default Button;
 
 const ButtonContainer = styled.div`
-  width: 3rem;
-  height: 3rem;
-  padding-bottom: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  z-index: 1;
 `;
 
 const AddButton = styled.button`
   width: 100%;
   height: 100%;
   border: none;
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  font-size: large;
+  color: #000;
   border-radius: 2rem;
   &:hover {
     cursor: pointer;
