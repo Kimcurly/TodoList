@@ -5,22 +5,12 @@ import styled from "styled-components";
 import DayOfTheWeek from "./DayOfTheWeek";
 import CalenderHeader from "./CalenderHeader";
 import CalenderRenderCell from "./CalenderRenderCell";
-
-export interface Date {
-  currentYear: string;
-  currentMonth: string;
-  currentDate: string;
-  currentDay: string;
-  currentFirstDate: number;
-  currentFirstDay: number;
-  currentFirstWeekDay: string;
-  currentLastDate: number;
-  currentLastDay: number;
-  lastMonthDate: string;
-}
+import { DateType } from "../../utils/getDateFormat";
 
 const Calender = () => {
-  const [currentMoment, setCurrentMoment] = useState(getDateFormat(dayjs()));
+  const [currentMoment, setCurrentMoment] = useState<DateType | object>(
+    getDateFormat(dayjs())
+  );
 
   const [selectedMoment, setSelectedMoment] = useState(0);
 
@@ -35,18 +25,7 @@ const Calender = () => {
     else setCurrentMoment(getDateFormat(dayjs()));
   }, [selectedMoment]);
 
-  const {
-    currentYear,
-    currentMonth,
-    currentDate,
-    currentDay,
-    currentFirstDate,
-    currentFirstDay,
-    currentFirstWeekDay,
-    currentLastDate,
-    currentLastDay,
-    lastMonthDate,
-  }: Date = currentMoment;
+  const { currentYear, currentMonth } = currentMoment;
 
   const leftButtonClickHandler = () => {
     setSelectedMoment((prev) => prev - 1);

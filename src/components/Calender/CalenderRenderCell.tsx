@@ -1,25 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Progress from "../UI/Progress";
 import styled from "styled-components";
-import { Date } from "./Calender";
+import { DateType } from "./Calender";
 
 type DateProps = {
-  currentMoment: Date;
+  currentMoment: DateType;
 };
 
 const CalenderRenderCell = ({ currentMoment }: DateProps) => {
   const {
-    currentYear,
-    currentMonth,
     currentDate,
-    currentDay,
     currentFirstDate,
     currentFirstDay,
-    currentFirstWeekDay,
     currentLastDate,
     currentLastDay,
-    lastMonthDate,
   } = currentMoment;
+  const [todayCell, setTodeyCell] = useState(currentDate);
+  const [select, setSelect] = useState();
+
   const mappedWeekData = [];
   const weekData: any[] = [];
   const firstWeekStart =
@@ -34,18 +32,21 @@ const CalenderRenderCell = ({ currentMoment }: DateProps) => {
     <OneWeekContainer>
       {weekData.map((day) => {
         return (
-          <>
-            {day <= 0 ? (
-              <DayCell color="white" key={day}>
-                {day}
-              </DayCell>
-            ) : (
-              <DayCell>
-                <Progress />
-                <div key={day}>{day}</div>
-              </DayCell>
-            )}
-          </>
+          <DayCell
+            key={day}
+            onClick={() => {
+              setSelect(day);
+            }}
+          >
+            {!(day <= 0) && <Progress />}
+            <DaySection
+              display={`${day <= 0 && "hidden"}`}
+              today={`${todayCell === day ? "black" : "white"}`}
+              isSelect={`${select === day ? "#506ef0" : "unSelect"}`}
+            >
+              {day}
+            </DaySection>
+          </DayCell>
         );
       })}
     </OneWeekContainer>
@@ -62,18 +63,21 @@ const CalenderRenderCell = ({ currentMoment }: DateProps) => {
       <OneWeekContainer>
         {weekData.map((day) => {
           return (
-            <>
-              {day <= currentLastDate ? (
-                <DayCell>
-                  <Progress />
-                  <div key={day}>{day}</div>
-                </DayCell>
-              ) : (
-                <DayCell color="white" key={day}>
-                  {day}
-                </DayCell>
-              )}
-            </>
+            <DayCell
+              key={day}
+              onClick={() => {
+                setSelect(day);
+              }}
+            >
+              {day <= currentLastDate && <Progress />}
+              <DaySection
+                display={`${day <= currentLastDate || "hidden"}`}
+                today={`${todayCell === day ? "black" : "white"}`}
+                isSelect={`${select === day ? "#506ef0" : "unSelect"}`}
+              >
+                {day}
+              </DaySection>
+            </DayCell>
           );
         })}
       </OneWeekContainer>
@@ -95,8 +99,8 @@ const OneWeekContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding-top: 10px;
-  margin-bottom: 15px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 `;
 
 const DayCell = styled.div`
@@ -106,4 +110,35 @@ const DayCell = styled.div`
   flex-direction: column;
   justify-content: space-between;
   color: ${(props) => props.color || "black"};
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const DaySection = styled.div<{
+  display: string;
+  isSelect: string;
+  today: string;
+}>`
+  visibility: ${(props) => props.display || "visibility"};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${(props) =>
+    props.isSelect === "unSelect"
+      ? props.today === "black"
+        ? "white"
+        : "black"
+      : "white"};
+  background-color: ${(props) =>
+    props.isSelect === "#506ef0"
+      ? "#506ef0"
+      : props.today === "black"
+      ? "black"
+      : "white"};
+  border-radius: 1.5rem;
+  font-size: 13px;
+  width: 26px;
+  height: 26px;
 `;

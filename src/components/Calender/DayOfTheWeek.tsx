@@ -7,7 +7,7 @@ const DayOfTheWeek = () => {
   return (
     <DayOfTheWeekContainer>
       {dayOfTheWeekData.map((day) => {
-        return <DayOfTheWeekCell>{day}</DayOfTheWeekCell>;
+        return <DayOfTheWeekCell key={day}>{day}</DayOfTheWeekCell>;
       })}
     </DayOfTheWeekContainer>
   );
