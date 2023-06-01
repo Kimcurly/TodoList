@@ -12,7 +12,10 @@ export interface TodoState {
 }
 
 const initialState: TodoState = {
-  todos: [{ id: 1, title: "할 일" }],
+  todos: [
+    { id: 1, title: "할 일" },
+    { id: 2, title: "리액트" },
+  ],
 };
 
 const todoSlice = createSlice({

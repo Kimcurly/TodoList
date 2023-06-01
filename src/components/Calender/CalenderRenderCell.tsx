@@ -1,7 +1,7 @@
 import React from "react";
 import Progress from "../UI/Progress";
 import styled from "styled-components";
-import { Date } from "../Calender";
+import { Date } from "./Calender";
 
 type DateProps = {
   currentMoment: Date;
@@ -102,5 +102,8 @@ const OneWeekContainer = styled.div`
 const DayCell = styled.div`
   text-align: center;
   flex-basis: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   color: ${(props) => props.color || "black"};
 `;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import getDateFormat from "../utils/getDateFormat";
+import getDateFormat from "../../utils/getDateFormat";
 import dayjs from "dayjs";
 import styled from "styled-components";
-import DayOfTheWeek from "./Calender/DayOfTheWeek";
-import CalenderHeader from "./Calender/CalenderHeader";
-import CalenderRenderCell from "./Calender/CalenderRenderCell";
+import DayOfTheWeek from "./DayOfTheWeek";
+import CalenderHeader from "./CalenderHeader";
+import CalenderRenderCell from "./CalenderRenderCell";
 
 export interface Date {
   currentYear: string;
@@ -73,7 +73,10 @@ const Calender = () => {
 export default Calender;
 
 const CalenderContainer = styled.div`
-  flex-basis: 900px;
-  max-width: 50%;
+  width: 40%;
   height: 100%;
+
+  @media (min-width: 390px) {
+    width: 100%;
+  }
 `;
