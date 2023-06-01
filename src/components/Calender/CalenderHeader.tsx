@@ -1,11 +1,10 @@
-import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 type DateTypes = {
-  currentYearData: string;
-  currentMonthData: string;
+  currentYearData: number;
+  currentMonthData: number;
   onLeftButtonClicked: () => void;
   onRightButtonClicked: () => void;
 };

@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 export interface DateType {
   currentYear: number;
   currentMonth: number;
@@ -12,8 +12,8 @@ export interface DateType {
   lastMonthDate: number;
 }
 
-const getDateFormat = (nowDate: Dayjs): object => {
-  const FormatedDate: DateType = {
+const getDateFormat = (nowDate: Dayjs): DateType => {
+  const FormatedDate = {
     currentYear: nowDate.get("year"),
     currentMonth: nowDate.get("month"),
     currentDate: nowDate.get("date"),

@@ -8,7 +8,7 @@ import CalenderRenderCell from "./CalenderRenderCell";
 import { DateType } from "../../utils/getDateFormat";
 
 const Calender = () => {
-  const [currentMoment, setCurrentMoment] = useState<DateType | object>(
+  const [currentMoment, setCurrentMoment] = useState<DateType>(
     getDateFormat(dayjs())
   );
 
