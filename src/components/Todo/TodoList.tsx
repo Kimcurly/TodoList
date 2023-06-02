@@ -31,12 +31,12 @@ const TodoList = () => {
     <GoalContainer>
       {todos.map((todo) => {
         return (
-          <>
+          <Wrapper>
             <TodoContainer>
               <SvgContainer>
                 <svg
-                  width="20"
-                  height="20"
+                  width="18"
+                  height="18"
                   viewBox="0 0 20 20"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,6 @@ const TodoList = () => {
                   />
                 </svg>
               </SvgContainer>
-
               <TextContainer>{todo.title}</TextContainer>
               <Button onClick={handleClick} />
             </TodoContainer>
@@ -78,7 +77,7 @@ const TodoList = () => {
                 </form>
               </InputContainer>
             ) : null}
-          </>
+          </Wrapper>
         );
       })}
     </GoalContainer>
@@ -91,19 +90,26 @@ const GoalContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 50%;
+  justify-content: center;
+  width: 100%;
   height: auto;
+
+  @media (min-width: 700px) {
+    width: 50%;
+  }
+`;
+
+const Wrapper = styled.div`
+  padding-bottom: 1.5rem;
 `;
 
 const TodoContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 10px;
-  width: auto;
-  height: auto;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0 10px 0;
+  width: auto;
+  height: auto;
+  padding: 7px 0 7px 0;
   background-color: #f1f1f1;
   border-radius: 5rem;
 `;
@@ -116,7 +122,8 @@ const SvgContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-  font-weight: 600;
+  padding: 0 0.5rem 0 0.5rem;
+  font-weight: 500;
 `;
 
 const InputContainer = styled.div`

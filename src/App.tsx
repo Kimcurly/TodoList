@@ -8,39 +8,26 @@ import { store } from "./store/index";
 function App() {
   return (
     <Provider store={store}>
-      <SectionContainer>
-        <RootContainer>
-          <Calender />
-          <TodoList />
-        </RootContainer>
-      </SectionContainer>
+      <RootContainer>
+        <Calender />
+        <TodoList />
+      </RootContainer>
     </Provider>
   );
 }
 
 export default App;
 
-const SectionContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-
-  @media (min-width: 390px) {
-    width: auto;
-    height: 100%;
-    padding: 1rem;
-  }
-`;
-
 const RootContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  padding: 1rem;
+  box-sizing: border-box;
+  height: auto;
 
-  @media (min-width: 390px) {
+  @media (min-width: 700px) {
     display: flex;
-    flex-direction: column;
     width: 100%;
     height: 100%;
   }

@@ -100,7 +100,7 @@ const OneWeekContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.2rem;
 `;
 
 const DayCell = styled.div`

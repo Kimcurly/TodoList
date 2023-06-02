@@ -18,6 +18,7 @@ export default Button;
 const ButtonContainer = styled.div`
   width: 1.5rem;
   height: 1.5rem;
+  padding-right: 0.5rem;
   z-index: 1;
 `;
 

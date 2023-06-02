@@ -52,10 +52,13 @@ const Calender = () => {
 export default Calender;
 
 const CalenderContainer = styled.div`
-  width: 40%;
-  height: 100%;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 4rem;
+  box-sizing: border-box;
 
-  @media (min-width: 390px) {
-    width: 100%;
+  @media (min-width: 700px) {
+    width: 40%;
+    height: 100%;
   }
 `;

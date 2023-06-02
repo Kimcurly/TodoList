@@ -4,9 +4,3 @@ body {
   margin: 0;
   font-family: "Spoqa Han Sans", "Spoqa Han Sans JP", "Sans-serif";
 }
-
-#root {
-  @media (min-width: 390px) {
-    width: 390px;
-  }
-}
