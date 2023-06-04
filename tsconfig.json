@@ -3,7 +3,14 @@
     "target": "es5",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "baseUrl": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@Calender/*": ["src/components/Calender/*"],
+      "@Todo/*": ["src/components/Todo/*"],
+      "@UI/*": ["src/components/UI/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

@@ -1,16 +1,16 @@
 import "./App.css";
-import Calender from "./components/Calender/Calender";
-import TodoList from "./components/Todo/TodoList";
+import Calender from "@Calender/Calender";
+import ScheduleListSection from "@Todo/ScheduleListSection";
 import styled from "styled-components";
 import { Provider } from "react-redux";
-import { store } from "./store/index";
+import { store } from "@src/store/index";
 
 function App() {
   return (
     <Provider store={store}>
       <RootContainer>
         <Calender />
-        <TodoList />
+        <ScheduleListSection />
       </RootContainer>
     </Provider>
   );

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import getDateFormat from "../../utils/getDateFormat";
+import getDateFormat, { DateType } from "@src/utils/getDateFormat";
 import dayjs from "dayjs";
 import styled from "styled-components";
 import DayOfTheWeek from "./DayOfTheWeek";
 import CalenderHeader from "./CalenderHeader";
 import CalenderRenderCell from "./CalenderRenderCell";
-import { DateType } from "../../utils/getDateFormat";
 
 const Calender = () => {
   const [currentMoment, setCurrentMoment] = useState<DateType>(

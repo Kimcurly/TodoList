@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Progress from "../UI/Progress";
+import Progress from "@UI/Progress";
 import styled from "styled-components";
-import { DateType } from "utils/getDateFormat";
+import { DateType } from "@src/utils/getDateFormat";
 
 type DateProps = {
   currentMoment: DateType;
