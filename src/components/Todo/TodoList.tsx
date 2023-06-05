@@ -1,148 +1,95 @@
-import { addTodo } from "../../store/index";
-import { useAppDispatch, useAppSelector } from "../../hooks/index";
-import Button from "../UI//Button";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Todos, changeTodoProgress } from "@src/store";
+import { useAppDispatch } from "@src/hooks";
 
-const TodoList = () => {
-  const todos = useAppSelector((state) => state.getTodos.todos);
-  console.log(todos);
-  const [input, setInput] = useState("");
-  const [isClicked, setIsClicked] = useState(false);
-  const [goals, setGoals] = useState([]);
+type TodoProps = {
+  todoData: Todos;
+};
+
+const TodoList = ({ todoData }: TodoProps) => {
+  const { goalId, keyId, title, done } = todoData;
+  const [doneColor, setIsDone] = useState("");
+
+  useEffect(() => {
+    if (done) {
+      setIsDone("#7F9DFF");
+    }
+    else if (!done) {
+      setIsDone("");
+    }
+  });
 
   const dispatch = useAppDispatch();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
-  };
-
-  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   dispatch(addTodo(input));
-  //   setInput("");
-  // };
-
   const handleClick = () => {
-    setIsClicked(true);
+    dispatch(changeTodoProgress({ keyId }));
   };
 
   return (
-    <GoalContainer>
-      {todos.map((todo) => {
-        return (
-          <Wrapper>
-            <TodoContainer>
-              <SvgContainer>
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M17.8147 0H2.35521C1.09653 0 0 0.78846 0 1.83333V18.0833C0 19.1282 1.09653 20 2.35521 20H11.444C11.6911 20 11.9305 19.9039 12.1081 19.7628L19.7761 13.3526C19.9537 13.2051 20 13 20 12.7949V1.83333C20 0.78846 19.0734 0 17.8147 0ZM1.85328 18.0833V1.83333C1.85328 1.64743 2.13127 1.53846 2.35521 1.53846H17.8147C18.0386 1.53846 18.1467 1.64743 18.1467 1.83333V11.6667H12.3166C11.0579 11.6667 9.96139 12.4744 9.96139 13.5192V18.4615H2.35521C2.13127 18.4615 1.85328 18.2692 1.85328 18.0833ZM11.8147 17.7115V13.5192C11.8147 13.3333 12.0927 13.2051 12.3166 13.2051H17.3668L11.8147 17.7115Z"
-                    fill="#444444"
-                  />
-                </svg>
-              </SvgContainer>
-              <TextContainer>{todo.title}</TextContainer>
-              <Button onClick={handleClick} />
-            </TodoContainer>
-            {isClicked ? (
-              <InputContainer>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 16 17"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="5" cy="5" r="5" fill="#D9D9D9" />
-                  <circle cx="5" cy="12" r="5" fill="#D9D9D9" />
-                  <path
-                    d="M16 5C16 7.76142 13.7614 10 11 10C8.23858 10 6 7.76142 6 5C6 2.23858 8.23858 0 11 0C13.7614 0 16 2.23858 16 5Z"
-                    fill="#D9D9D9"
-                  />
-                  <circle cx="11" cy="12" r="5" fill="#D9D9D9" />
-                </svg>
-                <form style={{ width: "93%" }}>
-                  <StyledInput
-                    placeholder="입력"
-                    value={input}
-                    autoFocus
-                    onChange={handleChange}
-                  />
-                </form>
-              </InputContainer>
-            ) : null}
-          </Wrapper>
-        );
-      })}
-    </GoalContainer>
+    <TodoContainer>
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 16 17"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        onClick={handleClick}
+      >
+        <ProgressPath
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M16 5C16 6.36273 15.4548 7.59814 14.5707 8.5C15.4548 9.40186 16 10.6373 16 12C16 14.7614 13.7615 17 11 17C9.87439 17 8.83569 16.6281 8 16.0004C7.16431 16.6281 6.12561 17 5 17C2.23853 17 0 14.7614 0 12C0 10.6373 0.545166 9.40186 1.42932 8.5C0.545166 7.59814 0 6.36273 0 5C0 2.23859 2.23853 0 5 0C6.12561 0 7.16431 0.371948 8 0.999634C8.83569 0.371948 9.87439 0 11 0C13.7615 0 16 2.23859 16 5Z"
+          fill="#D9D9D9"
+          doneColor={doneColor}
+        />
+        {done ? (
+          <svg
+            width="13"
+            height="11"
+            viewBox="-4 -9 20 22"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M18 2.54623L15.5984 0L6.72531 8.36904L2.4724 3.81705L0 6.127L6.67915 13.2759L9.15155 10.9659L9.11484 10.9266L18 2.54623Z"
+              fill="white"
+            />
+          </svg>
+        ) : null}
+      </svg>
+
+      <TodoDescription>{title}</TodoDescription>
+    </TodoContainer>
   );
 };
 
 export default TodoList;
 
-const GoalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-
-  @media (min-width: 700px) {
-    width: 50%;
-  }
-`;
-
-const Wrapper = styled.div`
-  padding-bottom: 1.5rem;
-`;
-
 const TodoContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  width: auto;
-  height: auto;
-  padding: 7px 0 7px 0;
-  background-color: #f1f1f1;
-  border-radius: 5rem;
+  padding-top: 1rem;
 `;
 
-const SvgContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 1rem;
-`;
-
-const TextContainer = styled.div`
-  padding: 0 0.5rem 0 0.5rem;
-  font-weight: 500;
-`;
-
-const InputContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  margin-top: 10px;
-  transition: all 2s;
-`;
-
-const StyledInput = styled.input`
-  width: 100%;
-  border: none;
-  outline: none;
-  padding-bottom: 14px;
-  font-size: medium;
-
-  &:focus {
-    border-bottom: 1px solid #000;
+const ProgressPath = styled.path<{
+  fillRule: string;
+  clipRule: string;
+  d: string;
+  fill: string;
+  doneColor: string;
+}>`
+  width: 26px;
+  height: 26px;
+  fill: ${(props) => props.doneColor};
+  &:hover {
+    cursor: pointer;
   }
+`;
+
+const TodoDescription = styled.div`
+  padding-left: 0.6rem;
 `;
