@@ -1,16 +1,19 @@
 import "./App.css";
-import Calender from "@Calender/Calender";
-import ScheduleListSection from "@Todo/ScheduleListSection";
+import MainPage from "@src/pages/MainPage";
+import GoalRegistrationPage from "@src/pages/GoalRegistrationPage";
 import styled from "styled-components";
 import { Provider } from "react-redux";
 import { store } from "@src/store/index";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <Provider store={store}>
       <RootContainer>
-        <Calender />
-        <ScheduleListSection />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/goalreg" element={<GoalRegistrationPage />} />
+        </Routes>
       </RootContainer>
     </Provider>
   );
