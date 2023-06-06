@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import MainPage from "@src/pages/MainPage";
+import GoalRegistrationPage from "@src/pages/GoalRegistrationPage";
+import styled from "styled-components";
+import { Provider } from "react-redux";
+import { store } from "@src/store/index";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <Provider store={store}>
+      <RootContainer>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/goalreg" element={<GoalRegistrationPage />} />
+        </Routes>
+      </RootContainer>
+    </Provider>
+  );
 }
 
-export default App
+export default App;
+
+const RootContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  box-sizing: border-box;
+  height: auto;
+
+  @media (min-width: 700px) {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+`;

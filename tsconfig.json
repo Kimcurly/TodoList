@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es5",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@Calender/*": ["src/components/Calender/*"],
+      "@Todo/*": ["src/components/Todo/*"],
+      "@UI/*": ["src/components/UI/*"]
+    },
+    "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
+    "module": "esnext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -17,5 +25,6 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
+  "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
