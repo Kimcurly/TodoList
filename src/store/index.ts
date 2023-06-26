@@ -5,6 +5,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 export interface ScheduleState {
   goals: Goals[];
   todos: Todos[];
+  modals: Modals;
 }
 export interface Goals {
   id: number;
@@ -16,6 +17,10 @@ export interface Todos {
   keyId: number;
   title: string;
   done: boolean;
+}
+
+export interface Modals {
+  isOpen: boolean;
 }
 
 export interface GoalState {
@@ -62,6 +67,9 @@ const initialState: ScheduleState = {
       done: false,
     },
   ],
+  modals: {
+    isOpen: false,
+  },
 };
 
 const ScheduleSlice = createSlice({
@@ -101,6 +109,9 @@ const ScheduleSlice = createSlice({
         return todo;
       });
     },
+    changeModalState: (state, action: PayloadAction<boolean>) => {
+      state.modals = { ...state.modals, isOpen: action.payload };
+    },
   },
 });
 
@@ -113,5 +124,11 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export const { addGoal, addTodo, deleteGoal, deleteTodo, changeTodoProgress } =
-  ScheduleSlice.actions;
+export const {
+  addGoal,
+  addTodo,
+  deleteGoal,
+  deleteTodo,
+  changeTodoProgress,
+  changeModalState,
+} = ScheduleSlice.actions;

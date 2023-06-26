@@ -6,7 +6,7 @@ import { Goals } from "@src/store/index";
 import { useAppDispatch, useAppSelector } from "@src/hooks/index";
 import { addTodo } from "@src/store/index";
 
-// 투두 로직 마저 완성 후, 디자인 삽입하면 끝.
+// 일정 말고 목표 추가 로직 만들고 일자에 따라 일정 반영되는 로직만 추가하면 대략 완성. 최종으로는 진행도에 따른 스타일링만 주면 끝.
 
 type ListProps = {
   goalData: Goals[];
